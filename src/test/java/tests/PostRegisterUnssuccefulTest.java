@@ -14,6 +14,7 @@ public class PostRegisterUnssuccefulTest {
     @Test
     void postRegisterUnssucceful() {
         String email = "{ \"email\": \"sydney@fife\"}";
+        String response =
         given()
                 .contentType(JSON)
                 .body(email)
@@ -21,6 +22,9 @@ public class PostRegisterUnssuccefulTest {
                 .post("https://reqres.in/api/register")
                 .then()
                 .statusCode(400)
-                .body("error", is("Missing password"));
+                .body("error", is("Missing password"))
+                .extract().response().asString();
+        System.out.println(response);
+
     }
 }
