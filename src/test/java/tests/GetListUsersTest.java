@@ -24,26 +24,25 @@ public class GetListUsersTest {
                         .extract().path("total_pages");
         System.out.println(actualPage);
         int expectedPage = 2;
-        assertEquals(expectedPage, actualPage);
-
+        assertEquals  (expectedPage, actualPage);
     }
 
     @Test
     void getData() {
         ArrayList<HashMap> data =
                 given()
+                        .log().all()
                         .contentType(JSON)
                         .when()
                         .get("https://reqres.in/api/users?page=2")
                         .then()
+                        .log().all()
                         .statusCode(200)
                         .extract().path("data");
-        String firstName = "Michael";
-        String responseFirstName = data.get(0).get("first_name").toString();
-        System.out.println(responseFirstName);
-        assertEquals(firstName, responseFirstName);
+        String first_name = "Michael";
+        String response_first_name = data.get(0).get("first_name").toString();
+        System.out.println(response_first_name);
+        assertEquals  (first_name, response_first_name);
     }
-
-
 }
 

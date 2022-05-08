@@ -9,10 +9,12 @@ public class DeleteUserTest {
     @Test
     void deleteUser() {
         given()
+                .log().all()
                 .contentType(JSON)
                 .when()
                 .delete("https://reqres.in/api/users/2")
                 .then()
+                .log().all()
                 .statusCode(204);
     }
 }

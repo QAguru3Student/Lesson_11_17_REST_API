@@ -16,11 +16,13 @@ public class PostRegisterUnssuccefulTest {
         String email = "{ \"email\": \"sydney@fife\"}";
         String response =
         given()
+                .log().all()
                 .contentType(JSON)
                 .body(email)
                 .when()
                 .post("https://reqres.in/api/register")
                 .then()
+                .log().all()
                 .statusCode(400)
                 .body("error", is("Missing password"))
                 .extract().response().asString();

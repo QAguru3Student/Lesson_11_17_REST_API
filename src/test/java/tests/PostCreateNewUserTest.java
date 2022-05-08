@@ -12,11 +12,13 @@ public class PostCreateNewUserTest {
         String newUser = "{\"name\": \"morpheus\"," +
                 "\"job\": \"leader\"}";
         given()
+                .log().all()
                 .contentType(JSON)
                 .body(newUser)
                 .when()
                 .post("https://reqres.in/api/users")
                 .then()
+                .log().all()
                 .statusCode(201)
                 .body("job" , is("leader"));
     }
