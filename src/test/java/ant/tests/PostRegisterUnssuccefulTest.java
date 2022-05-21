@@ -1,14 +1,10 @@
-package tests;
+package ant.tests;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
+import static ant.Specs.request;
 import static io.restassured.RestAssured.given;
-import static io.restassured.http.ContentType.JSON;
 import static org.hamcrest.Matchers.is;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PostRegisterUnssuccefulTest {
     @Test
@@ -16,8 +12,7 @@ public class PostRegisterUnssuccefulTest {
         String email = "{ \"email\": \"sydney@fife\"}";
         String response =
         given()
-                .log().all()
-                .contentType(JSON)
+                .spec(request)
                 .body(email)
                 .when()
                 .post("https://reqres.in/api/register")

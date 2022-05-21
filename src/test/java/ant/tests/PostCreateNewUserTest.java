@@ -1,9 +1,8 @@
-package tests;
+package ant.tests;
 
 import org.junit.jupiter.api.Test;
-
+import static ant.Specs.request;
 import static io.restassured.RestAssured.given;
-import static io.restassured.http.ContentType.JSON;
 import static org.hamcrest.Matchers.is;
 
 public class PostCreateNewUserTest {
@@ -12,11 +11,10 @@ public class PostCreateNewUserTest {
         String newUser = "{\"name\": \"morpheus\"," +
                 "\"job\": \"leader\"}";
         given()
-                .log().all()
-                .contentType(JSON)
+                .spec(request)
                 .body(newUser)
                 .when()
-                .post("https://reqres.in/api/users")
+                .post("users")
                 .then()
                 .log().all()
                 .statusCode(201)
